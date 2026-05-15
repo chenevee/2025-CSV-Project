@@ -1,5 +1,6 @@
 import java.util.*;
 import java.io.*;
+import java.util.ArrayList;
 
 public class DataManager {
     public static void main(String[] args) {
@@ -8,7 +9,8 @@ public class DataManager {
 
         try {
             Scanner fileReader = new Scanner(new File(fileName));
-            
+            ArrayList<double> times = new ArrayList<>;
+            ArrayList<double> windSpeeds = new ArrayList<>;
             // 1. Skip the header row
             if (fileReader.hasNextLine()) {
                 fileReader.nextLine();
@@ -22,6 +24,7 @@ public class DataManager {
                 String[] data = line.split(",");
                 
                 // 4. Parse data and create Athlete object
+                Runner 
                 // TODO: roster.add(new Athlete(...));
             }
             
@@ -37,3 +40,24 @@ public class DataManager {
         // 5. TODO: Implement your Level Up analysis here!
     }
 }
+
+
+public class Runner{
+    private String name;
+    private String sponsorship;
+    private double result;
+    private double wind;
+    private int heat;
+    private int LN;
+    public Runner(String runner, String sponsor, double time, double windSpeed, int Temp, int POS){
+        name = runner;
+        sponsorship = sponsor;
+        result = time;
+        wind = windSpeed;
+        heat = Temp;
+        LN = POS;
+    }
+    public String toString(){
+        return name + " who is sponsored by " + sponsorship + " ended up with a time of " + result + ", the  conditions for him were a wind speed of"
+    }
+}--
