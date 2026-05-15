@@ -4,7 +4,7 @@ import java.io.*;
 public class DataManager {
     public static void main(String[] args) {
         ArrayList<Athlete> roster = new ArrayList<>();
-        String fileName = "Titanic DataSet.csv";
+        String fileName = "Lake County Men's 100m Dash Data.csv";
 
         try {
             Scanner fileReader = new Scanner(new File(fileName));
