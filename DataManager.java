@@ -9,8 +9,8 @@ public class DataManager {
 
         try {
             Scanner fileReader = new Scanner(new File(fileName));
-            ArrayList<double> times = new ArrayList<>;
-            ArrayList<double> windSpeeds = new ArrayList<>;
+            ArrayList<Double> times = new ArrayList<>();
+            ArrayList<Double> windSpeeds = new ArrayList<>();
             double totalTime = 0;
             double totalWind = 0;
             int numCompetitors = 0;
@@ -38,7 +38,7 @@ public class DataManager {
                 Runner runMan = new Runner(Athlete,Sponsor,time,windSpeed,heat,LN);
                 System.out.println(runMan);
                 times.add(time);
-                windSpeed.add(time);
+                windSpeeds.add(time);
                 numCompetitors += 1;
                 // TODO: roster.add(new Athlete(...));
             }
@@ -48,7 +48,7 @@ public class DataManager {
             double meanWind = totalWind/numCompetitors;
             double minTime = 999999999999;
             double maxTime = 0;
-            double minWind= 0;
+            double minWind= 99999999999999;
             double maxWind = 0;
             double SDCalculationTime = 0;
             double SDCalculationWind = 0;
@@ -59,9 +59,9 @@ public class DataManager {
                 if (time > maxTime){
                     maxTime = time;
                 }
-                SDCalculationTime += ((time - meanTime)(time-meanTime))
+                SDCalculationTime += ((time - meanTime)*(time-meanTime));
             } 
-            StandardDeviationTime = Math.sqrt(SDCalculationTime/(numCompetitors-1));
+            double StandardDeviationTime = Math.sqrt(SDCalculationTime/(numCompetitors-1));
 
             for (double wind:windSpeeds){
                 if (wind < minWind){
@@ -70,21 +70,21 @@ public class DataManager {
                 if (wind > maxWind){
                     maxWind = wind;
                 }
-                SDCalculationWind += ((wind - meanWind)(wind-meanWind))
+                SDCalculationWind += ((wind - meanWind)*(wind-meanWind));
             } 
-            StandardDeviationWind = Math.sqrt(SDCalculationWind/(numCompetitors-1));
+            double StandardDeviationWind = Math.sqrt(SDCalculationWind/(numCompetitors-1));
 
-            Arrays.sort(times);
-            Arrays.sort(windSpeeds);
+            Collections.sort(times);
+            Collections.sort(windSpeeds);
             double medianTime = 0;
             double medianWind = 0;
             if (numCompetitors % 2 != 0){
-                medianTime = times[numCompetitors/2];
-                medianWind = windSpeeds[numCompetitors/2];
+                medianTime = times.get(numCompetitors/2);
+                medianWind = windSpeeds.get(numCompetitors/2);
             }
             else{
-                medianTime = (times[numCompetitors/2-1] + times[numCompetitors/2])/2;
-                medianWind = (windSpeeds[numCompetitors/2-1]+windSpeeds[numCompetitors/2])/2;
+                medianTime = (times.get(numCompetitors/2-1) + times.get(numCompetitors/2))/2;
+                medianWind = (windSpeeds.get(numCompetitors/2-1)+windSpeeds.get(numCompetitors/2))/2;
 
             }
             System.out.println("The Statistician has entered the room and will analyze the data");
@@ -94,13 +94,13 @@ public class DataManager {
             System.out.println("The slowest time someone ran was " + maxTime);
             System.out.println("The standard deviation of the data of run times was " + StandardDeviationTime);
             System.out.println();
-            System.out.println("The average wind speed is " + meanWind);\
+            System.out.println("The average wind speed is " + meanWind);
             System.out.println("The median data point of the run times was " + medianWind);
             System.out.println("The most helpful wind speed was " + minWind);
             System.out.println("The least helpful wind speed was " + maxWind);
             System.out.println("The standard deviation of the data of wind speeds was " + StandardDeviationWind);
 
-        } catch (FileNotFoundException e)
+        } catch (FileNotFoundException e){
             System.out.println("Error: The file '" + fileName + "' was not found.");
         } catch (NumberFormatException e) {
             System.out.println("Error: Failed to parse a numeric value in the CSV.");
@@ -127,6 +127,6 @@ public class Runner{
         LN = POS;
     }
     public String toString(){
-        return name + " who is sponsored by " + sponsorship + " ended up with a time of " + result + ", the  conditions for him were a wind speed of" + windSpeed + ", a temp of " + heat + ", and a LN of " + LN;
+        return name + " who is sponsored by " + sponsorship + " ended up with a time of " + result + ", the  conditions for him were a wind speed of" + wind + ", a temp of " + heat + ", and a LN of " + LN;
     }
-}--
+}
