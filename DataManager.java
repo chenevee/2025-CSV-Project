@@ -38,7 +38,7 @@ public class DataManager {
                 Runner runMan = new Runner(Athlete,Sponsor,time,windSpeed,heat,LN);
                 System.out.println(runMan);
                 times.add(time);
-                windSpeeds.add(time);
+                windSpeeds.add(windSpeed);
                 numCompetitors += 1;
                 // TODO: roster.add(new Athlete(...));
             }
@@ -83,8 +83,8 @@ public class DataManager {
                 medianWind = windSpeeds.get(numCompetitors/2);
             }
             else{
-                medianTime = (times.get(numCompetitors/2-1) + times.get(numCompetitors/2))/2;
-                medianWind = (windSpeeds.get(numCompetitors/2-1)+windSpeeds.get(numCompetitors/2))/2;
+                medianTime = (times.get(numCompetitors/2.0-1) + times.get(numCompetitors/2.0))/2;
+                medianWind = (windSpeeds.get(numCompetitors/2.0-1)+windSpeeds.get(numCompetitors/2.0))/2;
 
             }
             System.out.println("The Statistician has entered the room and will analyze the data");
